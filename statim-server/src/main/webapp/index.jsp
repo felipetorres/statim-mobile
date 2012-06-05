@@ -3,6 +3,6 @@
 	<title>Statim</title>
 </head>
 <body>
-	It works!!
+	Página inicial do Statim.
 </body>
 </html>
