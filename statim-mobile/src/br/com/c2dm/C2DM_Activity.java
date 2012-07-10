@@ -23,7 +23,7 @@ public class C2DM_Activity extends Activity {
 		Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
         
         intent.putExtra("app", PendingIntent.getBroadcast(this, 0, new Intent(), 0));
-        intent.putExtra("sender", Constants.sender_email);
+        intent.putExtra("sender", Constants.sender_id);
         
         startService(intent);
 	}
