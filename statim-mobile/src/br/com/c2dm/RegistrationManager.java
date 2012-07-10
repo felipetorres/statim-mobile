@@ -41,7 +41,7 @@ public class RegistrationManager {
 	}
     
     private void send(String newRegistrationId) {
-    	sendTo(Constants.server_url + "/new/" + Constants.sender_id + "/" + newRegistrationId);
+    	sendTo(Constants.server_url + "/new/" + Constants.sender_email + "/" + newRegistrationId);
     }
     
     private void update(String oldRegistrationId, String newRegistrationId) {
