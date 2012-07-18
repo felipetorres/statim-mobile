@@ -1,10 +1,10 @@
 package br.com.c2dm;
 
+import route.ItineraryActivity;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 import constants.Constants;
 
 public class C2DM_Activity extends Activity {
@@ -12,11 +12,11 @@ public class C2DM_Activity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        TextView tv = new TextView(this);
-        tv.setText("Conecte o celular a um computador, abra o LogCat e pegue seu registrationId.");
-        setContentView(tv);
-        
         register();
+        
+        startActivity(new Intent(this, ItineraryActivity.class));
+        
+        finish();
     }
 
 	private void register() {
