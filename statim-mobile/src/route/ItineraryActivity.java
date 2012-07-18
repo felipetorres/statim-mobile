@@ -18,23 +18,23 @@ import br.com.c2dm.R;
 public class ItineraryActivity extends Activity{
 	
 	private String[] enderecos = new String[] {
-			"endereco1",
-			"endereco2",
-			"endereco3",
-			"endereco4",
-			"endereco5",
-			"endereco6",
-			"endereco7",
-			"endereco8",
-			"endereco9",
-			"endereco10",
-			"endereco11",
-			"endereco12",
-			"endereco13",
-			"endereco14",
-			"endereco15",
-			"endereco16",
-			"endereco17"
+			"endereco 1",
+			"endereco 2",
+			"endereco 3",
+			"endereco 4",
+			"endereco 5",
+			"endereco 6",
+			"endereco 7",
+			"endereco 8",
+			"endereco 9",
+			"endereco 10",
+			"endereco 11",
+			"endereco 12",
+			"endereco 13",
+			"endereco 14",
+			"endereco 15",
+			"endereco 16",
+			"endereco 17"
 			};
 	private List<String> enderecosSelecionados = new ArrayList<String>();
 

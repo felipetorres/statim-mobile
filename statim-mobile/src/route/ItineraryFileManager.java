@@ -41,6 +41,11 @@ public class ItineraryFileManager {
 		return addresses;
 	}
 	
+	public String getLastVisitedAddress() {
+		List<String> visitedAddresses = getVisitedAddresses();
+		return visitedAddresses.get(visitedAddresses.size()-1);
+	}
+	
 	private List<String> parseJSON(JSONArray json) throws JSONException {
 		List<String> list = new ArrayList<String>();
 		for (int i=0; i < json.length(); i++) {
