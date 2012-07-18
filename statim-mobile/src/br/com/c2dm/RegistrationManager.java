@@ -29,14 +29,14 @@ public class RegistrationManager {
 	}
 
 	private String getRegistrationId() {
-		SharedPreferences settings = context.getSharedPreferences(Constants.settings_filename, 0);
-		return settings.getString(Constants.settings_key, "");
+		SharedPreferences settings = context.getSharedPreferences(Constants.statim_filename, 0);
+		return settings.getString(Constants.statim_registration_id, "");
 	}
 
 	private void saveLocally(String registrationId) {
-		SharedPreferences settings = context.getSharedPreferences(Constants.settings_filename, 0);
+		SharedPreferences settings = context.getSharedPreferences(Constants.statim_filename, 0);
 		Editor editor = settings.edit();
-		editor.putString(Constants.settings_key, registrationId);
+		editor.putString(Constants.statim_registration_id, registrationId);
 		editor.commit();
 	}
     

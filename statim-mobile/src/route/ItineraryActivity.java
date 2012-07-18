@@ -46,6 +46,9 @@ public class ItineraryActivity extends Activity{
 		
 		ListView listEnderecos = (ListView) findViewById(R.id.listEnderecos);
 		
+		final ItineraryFileManager manager = new ItineraryFileManager(getApplicationContext());
+		final List<String> enderecosSalvos = manager.getVisitedAddresses();
+		
 		ArrayAdapter<String> listEnderecosAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1) {
 			
 			@Override
@@ -64,6 +67,10 @@ public class ItineraryActivity extends Activity{
 				CheckBox checkboxEndereco = (CheckBox) view.findViewById(R.id.checkboxEndereco);
 				checkboxEndereco.setTag(endereco);
 				
+				if(enderecosSalvos != null) {
+					enderecosSelecionados = enderecosSalvos;
+				}
+				
 				if (enderecosSelecionados.contains(endereco)) {
 					checkboxEndereco.setChecked(true);
 				} else {
@@ -80,7 +87,7 @@ public class ItineraryActivity extends Activity{
 						if (checkboxEndereco.isChecked()) {
 							Toast.makeText(getApplicationContext(), "Checkbox de " + endereco + " marcado!", Toast.LENGTH_SHORT).show();
 							if (!enderecosSelecionados.contains(endereco)) {
-								enderecosSelecionados.add(endereco);								
+								enderecosSelecionados.add(endereco);
 							}
 						} else {
 							Toast.makeText(getApplicationContext(), "Checkbox de " + endereco + " desmarcado!", Toast.LENGTH_SHORT).show();
@@ -88,6 +95,7 @@ public class ItineraryActivity extends Activity{
 								enderecosSelecionados.remove(endereco);
 							}
 						}
+						manager.saveVisitedAddresses(enderecosSelecionados);
 					}
 				});
 				
