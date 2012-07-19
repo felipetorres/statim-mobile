@@ -51,8 +51,8 @@ public class C2DM_MessageReceiver extends BroadcastReceiver {
 				Log.i("COORDENADAS", texto);
 				
 				Intent intent = new Intent(context, C2DM_CoordinateSender.class);
-				intent.putExtra("latitude", String.valueOf(lat));
-				intent.putExtra("longitude", String.valueOf(lon));
+				intent.putExtra("latitude", lat);
+				intent.putExtra("longitude", lon);
 				context.startService(intent);
 			}
 			@Override
