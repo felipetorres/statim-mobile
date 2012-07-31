@@ -43,7 +43,10 @@ public class ItineraryFileManager {
 	
 	public String getLastVisitedAddress() {
 		List<String> visitedAddresses = getVisitedAddresses();
-		return visitedAddresses.get(visitedAddresses.size()-1);
+		if(visitedAddresses != null) {
+			return visitedAddresses.get(visitedAddresses.size()-1);
+		}
+		return "no-address";
 	}
 	
 	private List<String> parseJSON(JSONArray json) throws JSONException {
