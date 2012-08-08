@@ -1,5 +1,8 @@
 package br.com.c2dm;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +24,18 @@ public class C2DM_MessageReceiver extends BroadcastReceiver {
             
             if("gps".equals(message)) {
         		localiza(context);
+            } 
+            else if("itinerary".equals(message)) {
+            	String itinerary = intent.getStringExtra("itinerary");
+            	JSONArray array;
+				try {
+					array = new JSONArray(itinerary);
+					for (int i = 0; i < array.length(); i++) {
+						System.out.println(array.getJSONObject(i));
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
             }
         }
     }
