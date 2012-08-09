@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, statim-mobile!</string>
-    <string name="app_name">statim-mobile</string>
+    <string name="app_name">Statim</string>
     <string name="sender_email">felipe.gtorres@gmail.com</string>
 
 </resources>
