@@ -1,10 +1,17 @@
 package route;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -55,5 +62,44 @@ public class ItineraryFileManager {
 			list.add(json.getString(i));
 		}
 		return list;
+	}
+	
+    public void save(String json) throws IOException {
+    	File dir = context.getCacheDir();
+    	File file = new File(dir, "itinerary");
+    	PrintStream printStream = new PrintStream(file);
+    	printStream.print(json);
+    }
+    
+    public String getItineraryJSONFromFile() {
+    	File dir = context.getCacheDir();
+    	File file = new File(dir, "itinerary");
+    	Scanner scanner;
+    	String content = "";
+		try {
+			scanner = new Scanner(new FileInputStream(file));
+			while (scanner.hasNextLine()) {
+				content += scanner.nextLine();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return content;
+    }
+
+	public ArrayList<Address> buildItineraryArray(String itineraryJSON) {
+		JSONArray array;
+		ArrayList<Address> itinerary = new ArrayList<Address>();
+		try {
+			array = new JSONArray(itineraryJSON);
+			for (int i = 0; i < array.length(); i++) {
+				JSONObject jsonObject = array.getJSONObject(i);
+				Address address = new Address(jsonObject.getString("name"), jsonObject.getInt("number"));
+				itinerary.add(address);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return itinerary;
 	}
 }

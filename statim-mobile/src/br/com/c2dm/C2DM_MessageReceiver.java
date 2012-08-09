@@ -1,8 +1,8 @@
 package br.com.c2dm;
 
-import org.json.JSONArray;
-import org.json.JSONException;
+import java.io.IOException;
 
+import route.ItineraryFileManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,6 @@ public class C2DM_MessageReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         String action = intent.getAction();
-        
         if ("com.google.android.c2dm.intent.RECEIVE".equals(action)) {
             String message = intent.getStringExtra("message");
             
@@ -26,20 +25,16 @@ public class C2DM_MessageReceiver extends BroadcastReceiver {
         		localiza(context);
             } 
             else if("itinerary".equals(message)) {
-            	String itinerary = intent.getStringExtra("itinerary");
-            	JSONArray array;
+            	String itineraryJSON = intent.getStringExtra("itinerary");
 				try {
-					array = new JSONArray(itinerary);
-					for (int i = 0; i < array.length(); i++) {
-						System.out.println(array.getJSONObject(i));
-					}
-				} catch (JSONException e) {
+					new ItineraryFileManager(context).save(itineraryJSON);
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
             }
         }
     }
-
+    
 	private void localiza(Context context) {
 		LocationListener listener = myLocationListener(context);
 		LocationManager manager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);

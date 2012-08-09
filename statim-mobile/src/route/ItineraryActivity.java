@@ -17,25 +17,7 @@ import br.com.c2dm.R;
 
 public class ItineraryActivity extends Activity{
 	
-	private String[] enderecos = new String[] {
-			"endereco 1",
-			"endereco 2",
-			"endereco 3",
-			"endereco 4",
-			"endereco 5",
-			"endereco 6",
-			"endereco 7",
-			"endereco 8",
-			"endereco 9",
-			"endereco 10",
-			"endereco 11",
-			"endereco 12",
-			"endereco 13",
-			"endereco 14",
-			"endereco 15",
-			"endereco 16",
-			"endereco 17"
-			};
+	private List<Address> enderecos;
 	private List<String> enderecosSelecionados = new ArrayList<String>();
 
 	@Override
@@ -46,15 +28,18 @@ public class ItineraryActivity extends Activity{
 		
 		ListView listEnderecos = (ListView) findViewById(R.id.listEnderecos);
 		
-		final ItineraryFileManager manager = new ItineraryFileManager(getApplicationContext());
+		final ItineraryFileManager manager = new ItineraryFileManager(this);
 		final List<String> enderecosSalvos = manager.getVisitedAddresses();
+		String itineraryJSON = manager.getItineraryJSONFromFile();
+		
+		enderecos = manager.buildItineraryArray(itineraryJSON);
 		
 		ArrayAdapter<String> listEnderecosAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1) {
 			
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
-				
-				String endereco = enderecos[position];
+
+				String endereco = enderecos.get(position).toString();
 
 				View view = convertView;
 				
@@ -112,7 +97,7 @@ public class ItineraryActivity extends Activity{
 			
 			@Override
 			public int getCount() {
-				return enderecos.length;
+				return enderecos.size();
 			}
 		};
 		
