@@ -51,6 +51,7 @@
         </receiver>
         
         <service android:name="C2DM_CoordinateSender"></service>
+        <service android:name=".ItineraryNotificatorService"></service>
         
     </application>
 </manifest>

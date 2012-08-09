@@ -100,7 +100,6 @@ public class ItineraryActivity extends Activity{
 				return enderecos.size();
 			}
 		};
-		
 		listEnderecos.setAdapter(listEnderecosAdapter);
 	}
 }

@@ -31,6 +31,8 @@ public class C2DM_MessageReceiver extends BroadcastReceiver {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				Intent notification = new Intent(context, ItineraryNotificatorService.class);
+				context.startService(notification);
             }
         }
     }
