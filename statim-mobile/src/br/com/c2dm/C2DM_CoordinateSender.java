@@ -1,7 +1,5 @@
 package br.com.c2dm;
 
-import infra.DeviceInfo;
-
 import java.io.IOException;
 
 import manager.ItineraryFileManager;
@@ -30,9 +28,8 @@ public class C2DM_CoordinateSender extends Service {
 		
 		ItineraryFileManager manager = new ItineraryFileManager(context);
         String lastVisitedAddress = manager.getLastVisitedAddress();
-        String deviceEmail = new DeviceInfo(context).getEmail();
         
-        CoordinateWrapper coordinate = new CoordinateWrapper(intent.getDoubleExtra("latitude", 0), intent.getDoubleExtra("longitude", 0), lastVisitedAddress, deviceEmail);
+        CoordinateWrapper coordinate = new CoordinateWrapper(intent.getDoubleExtra("latitude", 0), intent.getDoubleExtra("longitude", 0), lastVisitedAddress, Constants.device_email);
 		
 		send(coordinate);
 		

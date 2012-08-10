@@ -14,7 +14,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import route.Address;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -52,7 +51,7 @@ public class ItineraryFileManager {
 	
 	public String getLastVisitedAddress() {
 		List<String> visitedAddresses = getVisitedAddresses();
-		if(visitedAddresses.size() > 0) {
+		if(visitedAddresses != null && visitedAddresses.size() > 0) {
 			return visitedAddresses.get(visitedAddresses.size()-1);
 		}
 		return "no-address";

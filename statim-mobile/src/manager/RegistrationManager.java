@@ -8,7 +8,6 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -24,6 +23,7 @@ public class RegistrationManager {
 
 	public void manage(String newRegistrationId) {
 		String oldRegistrationId = getRegistrationId();
+		Constants.device_email = new DeviceInfo(context).getEmail();
 		
 		if(oldRegistrationId.isEmpty()) send(newRegistrationId);
 		else if(!newRegistrationId.equals(oldRegistrationId)) update(oldRegistrationId, newRegistrationId);
@@ -44,8 +44,7 @@ public class RegistrationManager {
 	}
     
     private void send(String newRegistrationId) {
-    	String deviceUserEmail = new DeviceInfo(context).getEmail();
-    	sendTo(Constants.server_url + "/new/" + Constants.sender_email + "/" + deviceUserEmail + "/" + newRegistrationId);
+    	sendTo(Constants.server_url + "/new/" + Constants.sender_email + "/" + Constants.device_email + "/" + newRegistrationId);
     }
     
     private void update(String oldRegistrationId, String newRegistrationId) {
