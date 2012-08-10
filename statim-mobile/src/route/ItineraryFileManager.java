@@ -50,7 +50,7 @@ public class ItineraryFileManager {
 	
 	public String getLastVisitedAddress() {
 		List<String> visitedAddresses = getVisitedAddresses();
-		if(visitedAddresses != null) {
+		if(visitedAddresses.size() > 0) {
 			return visitedAddresses.get(visitedAddresses.size()-1);
 		}
 		return "no-address";
