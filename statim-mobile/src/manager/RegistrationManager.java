@@ -1,19 +1,17 @@
-package br.com.c2dm;
+package manager;
+
+import infra.DeviceInfo;
 
 import java.io.IOException;
-import java.util.regex.Pattern;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.util.Log;
-import android.util.Patterns;
 import constants.Constants;
 
 public class RegistrationManager {
@@ -46,16 +44,7 @@ public class RegistrationManager {
 	}
     
     private void send(String newRegistrationId) {
-    	String deviceUserEmail = "";
-    	Pattern emailAddress = Patterns.EMAIL_ADDRESS;
-    	Account[] accounts = AccountManager.get(context).getAccounts();
-    	for (Account account : accounts) {
-			if(emailAddress.matcher(account.name).matches()) {
-				deviceUserEmail = account.name;
-				Log.i("EMAIL", deviceUserEmail);
-				break;
-			}
-		}
+    	String deviceUserEmail = new DeviceInfo(context).getEmail();
     	sendTo(Constants.server_url + "/new/" + Constants.sender_email + "/" + deviceUserEmail + "/" + newRegistrationId);
     }
     

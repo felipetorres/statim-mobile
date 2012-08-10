@@ -2,7 +2,9 @@ package br.com.c2dm;
 
 import java.io.IOException;
 
-import route.ItineraryFileManager;
+import manager.ItineraryFileManager;
+
+import route.ItineraryNotificatorService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;

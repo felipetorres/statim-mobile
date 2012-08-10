@@ -11,11 +11,13 @@ public class CoordinateWrapper implements Serializable{
 	private final Double latitude;
 	private final Double longitude;
 	private final String ultimoEnderecoVisitado;
+	private final String emailDoDevice;
 
-	public CoordinateWrapper(Double latitude, Double longitude, String ultimoEnderecoVisitado) {
+	public CoordinateWrapper(Double latitude, Double longitude, String ultimoEnderecoVisitado, String emailDoDevice) {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.ultimoEnderecoVisitado = ultimoEnderecoVisitado;
+		this.emailDoDevice = emailDoDevice;
 	}
 
 	public List<String> getCoordinateArray() {
@@ -23,6 +25,7 @@ public class CoordinateWrapper implements Serializable{
 		array.add(String.valueOf(latitude));
 		array.add(String.valueOf(longitude));
 		array.add(ultimoEnderecoVisitado);
+		array.add(emailDoDevice);
 		
 		return array;
 	}

@@ -1,6 +1,10 @@
 package br.com.c2dm;
 
+import infra.DeviceInfo;
+
 import java.io.IOException;
+
+import manager.ItineraryFileManager;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -11,7 +15,6 @@ import org.apache.http.protocol.HttpContext;
 import org.json.JSONArray;
 
 import route.CoordinateWrapper;
-import route.ItineraryFileManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -23,10 +26,13 @@ public class C2DM_CoordinateSender extends Service {
 	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		ItineraryFileManager manager = new ItineraryFileManager(getApplicationContext());
+		Context context = getApplicationContext();
+		
+		ItineraryFileManager manager = new ItineraryFileManager(context);
         String lastVisitedAddress = manager.getLastVisitedAddress();
+        String deviceEmail = new DeviceInfo(context).getEmail();
         
-        CoordinateWrapper coordinate = new CoordinateWrapper(intent.getDoubleExtra("latitude", 0), intent.getDoubleExtra("longitude", 0), lastVisitedAddress);
+        CoordinateWrapper coordinate = new CoordinateWrapper(intent.getDoubleExtra("latitude", 0), intent.getDoubleExtra("longitude", 0), lastVisitedAddress, deviceEmail);
 		
 		send(coordinate);
 		

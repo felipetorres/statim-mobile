@@ -1,5 +1,6 @@
 package br.com.c2dm;
 
+import manager.RegistrationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
